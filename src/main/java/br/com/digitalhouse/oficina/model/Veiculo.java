@@ -1,20 +1,27 @@
 package br.com.digitalhouse.oficina.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 
 
 
 @Entity
 @Table(name = "veiculos")
-public class Veiculo {
-	
+public class Veiculo implements Serializable{
+	private static final long serialVersionUID = 1L;
+
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@Column(length = 7, nullable = false)
@@ -26,6 +33,11 @@ public class Veiculo {
 	private String modelo;
 	@Column(length = 30, nullable = false)
 	private String marca;
+	
+	@ManyToOne
+	@JoinColumn(name = "cliente_id")
+	@NotNull
+	private Cliente cliente;
 
 	
 	public Veiculo() {}
@@ -36,6 +48,10 @@ public class Veiculo {
 		this.cor = cor;
 		this.modelo = modelo;
 		this.marca = marca;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 	public Long getId() {
@@ -76,6 +92,14 @@ public class Veiculo {
 
 	public void setMarca(String marca) {
 		this.marca = marca;
+	}
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 
 	@Override

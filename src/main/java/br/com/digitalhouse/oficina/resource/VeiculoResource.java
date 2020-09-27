@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import br.com.digitalhouse.oficina.dto.VeiculoInsertDTO;
 import br.com.digitalhouse.oficina.model.Veiculo;
 import br.com.digitalhouse.oficina.service.VeiculoService;
 
@@ -31,9 +32,9 @@ public class VeiculoResource {
 	
 	
 	@PostMapping
-	public ResponseEntity<Void> create( @RequestBody Veiculo veiculo){
+	public ResponseEntity<Void> create( @RequestBody VeiculoInsertDTO veiculoDTO){
 		
-		veiculo = this.veiculoService.create(veiculo);
+		Veiculo veiculo = this.veiculoService.create(veiculoDTO);
 		
 		URI uri = ServletUriComponentsBuilder
 				 .fromCurrentRequest()

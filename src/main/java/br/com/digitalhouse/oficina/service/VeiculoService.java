@@ -6,8 +6,12 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.digitalhouse.oficina.dto.VeiculoInsertDTO;
+import br.com.digitalhouse.oficina.model.Cliente;
 import br.com.digitalhouse.oficina.model.Veiculo;
+import br.com.digitalhouse.oficina.repository.ClienteRepository;
 import br.com.digitalhouse.oficina.repository.VeiculoRepository;
+
 
 @Service
 public class VeiculoService {
@@ -15,14 +19,27 @@ public class VeiculoService {
 	private final VeiculoRepository veiculoRepository;
 	
 	@Autowired
+	private ClienteRepository clienteRepository;
+	
+	@Autowired
 	public VeiculoService(VeiculoRepository veiculoRepository) {
 		this.veiculoRepository = veiculoRepository;
 	}
 	
 	
-	public Veiculo create(Veiculo veiculo) {
-		veiculo.setId(null);
-		return this.veiculoRepository.save(veiculo);
+	public Veiculo create(VeiculoInsertDTO veiculoDTO) {
+//		veiculoDTO.setId(null);
+		
+		Veiculo entity = new Veiculo();
+		entity.setCor(veiculoDTO.getCor());
+		entity.setMarca(veiculoDTO.getMarca());
+		entity.setModelo(veiculoDTO.getModelo());
+		entity.setPlaca(veiculoDTO.getPlaca());
+		
+		Cliente cliente = clienteRepository.getOne(veiculoDTO.getCliente_id());
+		entity.setCliente(cliente);
+		
+		return this.veiculoRepository.save(entity);
 	}
 	
 	public Veiculo update(Veiculo novo) {

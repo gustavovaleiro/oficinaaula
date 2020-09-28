@@ -2,9 +2,12 @@ package br.com.digitalhouse.oficina.dto;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.NotNull;
+
 public class ClienteInsertDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	@NotNull
 	private String nome;
 
 	public ClienteInsertDTO() {

@@ -1,26 +1,19 @@
 package br.com.digitalhouse.oficina.dto;
 
-import java.io.Serializable;
+public class VeiculoModel {
 
-import javax.validation.Valid;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-
-public class VeiculoInsertDTO implements Serializable{
-	private static final long serialVersionUID = 1L;
-
-	@NotBlank
+	private Long id;
 	private String placa;
-	@NotBlank
 	private String cor;
-	@NotBlank
 	private String modelo;
-	@NotBlank
 	private String marca;
-	@Valid @NotNull
-	private Long cliente_id;
 
-	public VeiculoInsertDTO() {
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getPlaca() {
@@ -53,14 +46,6 @@ public class VeiculoInsertDTO implements Serializable{
 
 	public void setMarca(String marca) {
 		this.marca = marca;
-	}
-
-	public Long getCliente_id() {
-		return cliente_id;
-	}
-
-	public void setCliente_id(Long cliente_id) {
-		this.cliente_id = cliente_id;
 	}
 
 }

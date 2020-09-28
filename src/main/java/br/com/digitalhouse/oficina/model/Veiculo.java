@@ -2,6 +2,7 @@ package br.com.digitalhouse.oficina.model;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -34,7 +35,7 @@ public class Veiculo implements Serializable{
 	@Column(length = 30, nullable = false)
 	private String marca;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.REMOVE)
 	@JoinColumn(name = "cliente_id")
 	@NotNull
 	private Cliente cliente;

@@ -58,11 +58,11 @@ public class ClienteService {
 	public List<Cliente> findAll(){
 		return this.clienteRepository.findAll();
 	}
-//	
-//	public void deleteById(Long id) {
-//		this.findById(id);
-//		
-//		this.veiculoRepository.deleteById(id);
-//	}
+	
+	public void deleteById(Long id) {
+		this.findById(id);
+		
+		this.clienteRepository.deleteById(id);
+	}
 	
 }

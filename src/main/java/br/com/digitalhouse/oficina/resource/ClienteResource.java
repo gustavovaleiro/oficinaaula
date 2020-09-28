@@ -25,12 +25,13 @@ import br.com.digitalhouse.oficina.service.VeiculoService;
 @RequestMapping("/clientes")
 public class ClienteResource {
 	
-	private final ClienteService clienteService;
-
 	@Autowired
-	public ClienteResource(ClienteService clienteService) {
-		this.clienteService = clienteService;
-	}
+	private ClienteService clienteService;
+
+//	@Autowired
+//	public ClienteResource(ClienteService clienteService) {
+//		this.clienteService = clienteService;
+//	}
 	
 	
 	@PostMapping
@@ -68,7 +69,7 @@ public class ClienteResource {
 		return ResponseEntity.ok(cliente);
 	}
 	
-	@GetMapping // /veiculos
+	@GetMapping // /clientes
 	public ResponseEntity<List<Cliente>> findAll(){
 		
 		List<Cliente> cliente = this.clienteService.findAll();
@@ -77,11 +78,12 @@ public class ClienteResource {
 		
 	}
 	
-//	@DeleteMapping("/{id}")
-//	public ResponseEntity<Void> delete(@PathVariable Long id){
-//		this.veiculoService.deleteById(id);
-//		return ResponseEntity.noContent().build();
-//	}
+	@DeleteMapping("/{id}")
+	public ResponseEntity<Void> delete(@PathVariable Long id){
+		
+		this.clienteService.deleteById(id);
+		return ResponseEntity.noContent().build();
+	}
 		
 	
 	

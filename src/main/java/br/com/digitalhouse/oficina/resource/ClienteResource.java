@@ -17,9 +17,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.com.digitalhouse.oficina.dto.ClienteInsertDTO;
 import br.com.digitalhouse.oficina.model.Cliente;
-import br.com.digitalhouse.oficina.model.Veiculo;
 import br.com.digitalhouse.oficina.service.ClienteService;
-import br.com.digitalhouse.oficina.service.VeiculoService;
 
 @RestController
 @RequestMapping("/clientes")
@@ -49,18 +47,20 @@ public class ClienteResource {
 		return ResponseEntity.created(uri).build();
 		
 	}
-//	
-//	@PutMapping("/{id}")
-//	public ResponseEntity<Void> update(@PathVariable Long id, @RequestBody Veiculo veiculo){
-//		veiculo.setId(id);
-//		
-//		this.veiculoService.update(veiculo);
-//		
-//		return ResponseEntity.noContent().build();
-//		
-//	}
-//	
-//	
+	
+	@PutMapping("/{id}")
+	public ResponseEntity<Void> update(@PathVariable Long id, @RequestBody ClienteInsertDTO clienteDTO){
+		Cliente cliente = new Cliente();		
+		cliente.setId(id);
+		cliente.setNome(clienteDTO.getNome());
+		
+		this.clienteService.update(cliente);
+		
+		return ResponseEntity.noContent().build();
+		
+	}
+	
+	
 	@GetMapping("/{id}")  // /clientes/3
 	public ResponseEntity<Cliente> findById(@PathVariable Long id){
 		
@@ -78,6 +78,7 @@ public class ClienteResource {
 		
 	}
 	
+	// Funcionando somente para clientes sem veiculos cadastrados
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> delete(@PathVariable Long id){
 		

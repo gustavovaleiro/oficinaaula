@@ -8,9 +8,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.digitalhouse.oficina.dto.ClienteInsertDTO;
 import br.com.digitalhouse.oficina.model.Cliente;
-import br.com.digitalhouse.oficina.model.Veiculo;
 import br.com.digitalhouse.oficina.repository.ClienteRepository;
-import br.com.digitalhouse.oficina.repository.VeiculoRepository;
 
 @Service
 public class ClienteService {
@@ -32,20 +30,17 @@ public class ClienteService {
 		return this.clienteRepository.save(entity);
 	}
 	
-//	public Veiculo update(Veiculo novo) {
-//	
-//		Veiculo antigo = this.findById(novo.getId());
-//		
-//		antigo.setCor(novo.getCor());
-//		antigo.setMarca(novo.getMarca());
-//		antigo.setModelo(novo.getModelo());
-//		antigo.setPlaca(novo.getPlaca());
-//		
-//		return this.veiculoRepository.save(antigo);
-//		
-//	}
-//	 
-//	
+	public Cliente update(Cliente novo) {
+	
+		Cliente antigo = this.findById(novo.getId());
+		
+		antigo.setNome(novo.getNome());
+		
+		return this.clienteRepository.save(antigo);
+		
+	}
+	 
+	
 	public Cliente findById(Long id) {
 		Optional
 			.ofNullable(id)

@@ -14,18 +14,26 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "clientes")
-public class Cliente implements Serializable{
+public class Cliente implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@Column(length = 60, nullable = false)
 	private String nome;
-	
+
 	@OneToMany(mappedBy = "cliente")
 	private Set<Veiculo> veiculos = new HashSet<Veiculo>();
+
+	public Set<Veiculo> getVeiculos() {
+		return veiculos;
+	}
+
+	public void setVeiculos(Set<Veiculo> veiculos) {
+		this.veiculos = veiculos;
+	}
 
 	public Long getId() {
 		return id;
@@ -54,6 +62,5 @@ public class Cliente implements Serializable{
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
-	
+
 }

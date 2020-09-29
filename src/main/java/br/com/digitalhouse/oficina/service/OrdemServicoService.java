@@ -52,4 +52,8 @@ public class OrdemServicoService {
 	public OrdemServico update(OrdemServico ordemServico) {
 		return ordemServicoRepository.save(ordemServico);
 	}
+	
+	public void excluir(Long id) {
+		ordemServicoRepository.deleteById(id);
+	}
 }

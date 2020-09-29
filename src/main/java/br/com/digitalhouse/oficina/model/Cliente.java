@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,8 +25,8 @@ public class Cliente implements Serializable {
 	@Column(length = 60, nullable = false)
 	private String nome;
 
-//	@OneToMany(mappedBy = "cliente")
-//	private Set<Veiculo> veiculos = new HashSet<Veiculo>();
+	@OneToMany(mappedBy = "cliente", orphanRemoval = true, cascade = CascadeType.ALL)
+	private Set<Veiculo> veiculos = new HashSet<Veiculo>();
 
 //	public Set<Veiculo> getVeiculos() {
 //		return veiculos;

@@ -35,7 +35,7 @@ public class Veiculo implements Serializable{
 	@Column(length = 30, nullable = false)
 	private String marca;
 	
-	@ManyToOne(cascade = CascadeType.REMOVE)
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "cliente_id")
 	@NotNull
 	private Cliente cliente;

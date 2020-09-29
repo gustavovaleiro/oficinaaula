@@ -70,7 +70,7 @@ public class ClienteResource {
 	}
 	
 	@GetMapping // /clientes
-	public ResponseEntity<List<Cliente>> findAll(){
+	public ResponseEntity<List<Cliente>> listar(){
 		
 		List<Cliente> cliente = this.clienteService.findAll();
 		

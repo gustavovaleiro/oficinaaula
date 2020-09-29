@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.com.digitalhouse.oficina.dto.VeiculoInsertDTO;
+import br.com.digitalhouse.oficina.dto.VeiculoUpdateDTO;
 import br.com.digitalhouse.oficina.model.Veiculo;
 import br.com.digitalhouse.oficina.service.VeiculoService;
 
@@ -48,10 +49,18 @@ public class VeiculoResource {
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<Void> update(@PathVariable Long id, @RequestBody Veiculo veiculo){
-		veiculo.setId(id);
+	public ResponseEntity<Void> update(@PathVariable Long id, @RequestBody VeiculoUpdateDTO veiculo){
 		
-		this.veiculoService.update(veiculo);
+		Veiculo entity = new Veiculo();
+
+		entity.setId(id);
+		entity.setCor(veiculo.getCor());
+		entity.setMarca(veiculo.getMarca());
+		entity.setModelo(veiculo.getModelo());
+		entity.setPlaca(veiculo.getPlaca());
+		entity.setCliente(veiculoService.findById(id).getCliente());
+		
+		this.veiculoService.update(entity);
 		
 		return ResponseEntity.noContent().build();
 		

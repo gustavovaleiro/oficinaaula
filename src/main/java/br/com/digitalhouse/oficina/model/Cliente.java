@@ -24,16 +24,16 @@ public class Cliente implements Serializable {
 	@Column(length = 60, nullable = false)
 	private String nome;
 
-	@OneToMany(mappedBy = "cliente")
-	private Set<Veiculo> veiculos = new HashSet<Veiculo>();
+//	@OneToMany(mappedBy = "cliente")
+//	private Set<Veiculo> veiculos = new HashSet<Veiculo>();
 
-	public Set<Veiculo> getVeiculos() {
-		return veiculos;
-	}
-
-	public void setVeiculos(Set<Veiculo> veiculos) {
-		this.veiculos = veiculos;
-	}
+//	public Set<Veiculo> getVeiculos() {
+//		return veiculos;
+//	}
+//
+//	public void setVeiculos(Set<Veiculo> veiculos) {
+//		this.veiculos = veiculos;
+//	}
 
 	public Long getId() {
 		return id;

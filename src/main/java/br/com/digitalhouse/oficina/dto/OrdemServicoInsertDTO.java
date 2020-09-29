@@ -15,10 +15,10 @@ public class OrdemServicoInsertDTO implements Serializable {
 
 	@Valid
 	@NotNull
-	private Long cliente_id;
+	private ClienteIdInput cliente;
 	@Valid
 	@NotNull
-	private Long veiculo_id;
+	private VeiculoIdInput veiculo;
 	@NotBlank
 	private String descricao;
 	@NotNull
@@ -28,20 +28,20 @@ public class OrdemServicoInsertDTO implements Serializable {
 		super();
 	}
 
-	public Long getCliente_id() {
-		return cliente_id;
+	public ClienteIdInput getCliente() {
+		return cliente;
 	}
 
-	public void setCliente_id(Long cliente_id) {
-		this.cliente_id = cliente_id;
+	public void setCliente(ClienteIdInput cliente) {
+		this.cliente = cliente;
 	}
 
-	public Long getVeiculo_id() {
-		return veiculo_id;
+	public VeiculoIdInput getVeiculo() {
+		return veiculo;
 	}
 
-	public void setVeiculo_id(Long veiculo_id) {
-		this.veiculo_id = veiculo_id;
+	public void setVeiculo(VeiculoIdInput veiculo) {
+		this.veiculo = veiculo;
 	}
 
 	public String getDescricao() {

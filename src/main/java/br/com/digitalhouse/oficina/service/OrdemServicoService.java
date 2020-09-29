@@ -1,11 +1,13 @@
 package br.com.digitalhouse.oficina.service;
 
+import java.time.OffsetDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.digitalhouse.oficina.dto.OrdemServicoModel;
+import br.com.digitalhouse.oficina.exception.NegocioException;
+import br.com.digitalhouse.oficina.model.Cliente;
 import br.com.digitalhouse.oficina.model.OrdemServico;
 import br.com.digitalhouse.oficina.repository.ClienteRepository;
 import br.com.digitalhouse.oficina.repository.OrdemServicoRepository;
@@ -23,20 +25,14 @@ public class OrdemServicoService {
 	@Autowired
 	private VeiculoRepository veiculoRepository;
 
-//	public OrdemServico create(OrdemServicoInsertDTO ordemServicoInsertDTO) {
-//		OrdemServico entity = new OrdemServico();
-//		entity.setDescricao(ordemServicoInsertDTO.getDescricao());
-//		entity.setPreco(ordemServicoInsertDTO.getPreco());
-//
-//		Cliente cliente = clienteRepository.findById(ordemServicoInsertDTO.getCliente_id())
-//
-//		Optional<Veiculo> veiculo = veiculoRepository.findById(ordemServicoInsertDTO.getVeiculo_id());
-//
-//		entity.setCliente(cliente);
-//		entity.setVeiculo(veiculo);
-//
-//		return ordemServicoRepository.save(entity);
-//	}
+	public OrdemServico create(OrdemServico ordemServico) {
+		Cliente cliente = clienteRepository.findById(ordemServico.getCliente().getId())
+				.orElseThrow(() -> new NegocioException("Cliente não encontrado"));
+
+		ordemServico.setCliente(cliente);
+
+		return ordemServicoRepository.save(ordemServico);
+	}
 
 	public List<OrdemServico> findAll() {
 		return this.ordemServicoRepository.findAll();

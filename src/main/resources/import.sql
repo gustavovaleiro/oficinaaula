@@ -7,5 +7,5 @@ INSERT INTO veiculos (cor, marca, modelo, placa, cliente_id) VALUES ('Green', 'W
 INSERT INTO veiculos (cor, marca, modelo, placa, cliente_id) VALUES ('Grey', 'Tesla', 'Jungle Tank', 'MIR7838', 3);
 
 INSERT INTO ordens_servico (descricao, preco, cliente_id, veiculo_id) VALUES ('Manutenção', 800, 1, 1)
-INSERT INTO ordens_servico (descricao, preco, cliente_id, veiculo_id) VALUES ('Manutenção', 800, 2, 2)
-INSERT INTO ordens_servico (descricao, preco, cliente_id, veiculo_id) VALUES ('Manutenção', 800, 3, 3)
+#INSERT INTO ordens_servico (descricao, preco, cliente_id, veiculo_id) VALUES ('Manutenção', 800, 2, 2)
+#INSERT INTO ordens_servico (descricao, preco, cliente_id, veiculo_id) VALUES ('Manutenção', 800, 3, 3)

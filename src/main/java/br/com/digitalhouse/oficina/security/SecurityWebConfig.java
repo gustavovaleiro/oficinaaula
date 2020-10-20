@@ -30,11 +30,11 @@ public class SecurityWebConfig extends WebSecurityConfigurerAdapter {
 						"/configuration/**", "/swagger-ui.html", "/webjars/**").permitAll()
 				.antMatchers(HttpMethod.GET, "/produtos").hasAnyRole("admin","code")
 				.antMatchers(HttpMethod.POST, "/produtos").hasRole("admin")
-				.antMatchers(HttpMethod.POST, "/usuarios").permitAll()
+				.antMatchers(HttpMethod.POST, "/usuarios", "/login").permitAll()
 				.anyRequest().authenticated()
 
 				.and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-				.and().httpBasic()
+
 				.and().cors().disable().csrf().disable(); 
 	}
 

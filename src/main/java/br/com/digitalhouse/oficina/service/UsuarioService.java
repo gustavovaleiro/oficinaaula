@@ -56,7 +56,11 @@ public class UsuarioService {
 		return this.roleRepository.findAll();
 	}
 
-
+	
+	public Usuario findByUsername(String username) {
+		return this.usuarioRepository.findByUsername(username)
+				.orElseThrow(() ->  new RuntimeException("usuario não encontrado"));
+	}
 	
 	
 	

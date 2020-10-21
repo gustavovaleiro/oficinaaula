@@ -1,5 +1,7 @@
 package br.com.digitalhouse.oficina.model;
 
+import lombok.Builder;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,6 +21,7 @@ public class Role {
 	
 	public Role() {}
 
+	@Builder
 	public Role(Long id, String name) {
 		this.id = id;
 		this.name = name;

@@ -17,10 +17,12 @@ import br.com.digitalhouse.oficina.service.UserDetailsServiceImpl;
 public class SecurityWebConfig extends WebSecurityConfigurerAdapter {
 
 	private UserDetailsServiceImpl usuarioService;
+	private JwtUtil jwtUtil;
 
 	@Autowired
-	public SecurityWebConfig(UserDetailsServiceImpl usuarioService) {
+	public SecurityWebConfig(UserDetailsServiceImpl usuarioService, JwtUtil jwtUti) {
 		this.usuarioService = usuarioService;
+		this.jwtUtil = jwtUti;
 	}
 
 	@Override
@@ -28,14 +30,18 @@ public class SecurityWebConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests()
 				.antMatchers("/", "/csrf", "/v2/api-docs", "/configuration/ui", "/swagger-resources/**",
 						"/configuration/**", "/swagger-ui.html", "/webjars/**").permitAll()
-				.antMatchers(HttpMethod.GET, "/produtos").hasAnyRole("admin","code")
+				.antMatchers(HttpMethod.GET, "/produtos").hasAnyRole("code")
+
 				.antMatchers(HttpMethod.POST, "/produtos").hasRole("admin")
 				.antMatchers(HttpMethod.POST, "/usuarios", "/login").permitAll()
 				.anyRequest().authenticated()
 
 				.and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+				
+				.and().cors().disable().csrf().disable()
+		         .addFilter(new JwtAuthenticationFilter(authenticationManager(), jwtUtil));
 
-				.and().cors().disable().csrf().disable(); 
+		; 
 	}
 
 	@Bean

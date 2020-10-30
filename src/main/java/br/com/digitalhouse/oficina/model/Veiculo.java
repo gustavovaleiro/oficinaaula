@@ -5,6 +5,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import lombok.Builder;
 
 
 
@@ -18,18 +21,24 @@ public class Veiculo {
 	private Long id;
 	
 	@Column(length = 7, nullable = false)
+	@NotNull
 	private String placa;
 	
 	@Column(length = 30, nullable = false)
+	@NotNull
 	private String cor;
 	@Column(length = 30, nullable = false)
+	@NotNull
 	private String modelo;
 	@Column(length = 30, nullable = false)
+	@NotNull
 	private String marca;
 
 	
 	public Veiculo() {}
 	
+	
+	@Builder
 	public Veiculo(Long id, String placa, String cor, String modelo, String marca) {
 		this.id = id;
 		this.placa = placa;
